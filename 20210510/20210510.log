@@ -1,10 +1,10 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018) (preloaded format=platex 2018.12.9)  30 APR 2021 06:24
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018) (preloaded format=platex 2018.12.9)  4 MAY 2021 20:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**20200914.tex
-(./20200914.tex
+**20210510.tex
+(./20210510.tex
 pLaTeX2e <2018-04-01>+1 (based on LaTeX2e <2018-04-01> patch level 2)
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/platex/jsclasses/jsarticle.cls
@@ -155,8 +155,8 @@ Package: tascmac 2018/03/09 v2.0h ascmac package (community edition)
 \@@bwsp=\box55
 \@bcal=\count104
 \shaderule=\dimen142
-)) (./20200914.aux)
-\openout1 = `20200914.aux'.
+)) (./20210510.aux)
+\openout1 = `20210510.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
@@ -193,7 +193,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 ]
 
-./20200914.tex:57: LaTeX Error: There's no line here to end.
+./20210510.tex:57: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -213,7 +213,7 @@ Overfull \hbox (10.34953pt too wide) detected at line 122
 \OMS/cmsy/m/n/7 , [] \OT1/cmr/m/n/7 = [] [] [] + [] []
  []
 
-[3] [4] (./20200914.aux) ) 
+[3] [4] (./20210510.aux) ) 
 Here is how much of TeX's memory you used:
  1639 strings out of 493281
  18868 string characters out of 6145041
@@ -223,4 +223,4 @@ Here is how much of TeX's memory you used:
  934 hyphenation exceptions out of 8191
  27i,9n,27p,232b,341s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 20200914.dvi (4 pages, 13512 bytes).
+Output written on 20210510.dvi (4 pages, 13512 bytes).

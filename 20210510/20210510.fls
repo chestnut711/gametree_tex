@@ -3,8 +3,8 @@ INPUT /usr/local/texlive/2018/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf.cnf
 INPUT /usr/local/texlive/2018/texmf-var/web2c/eptex/platex.fmt
-INPUT 20200914.tex
-OUTPUT 20200914.log
+INPUT 20210510.tex
+OUTPUT 20210510.log
 INPUT /usr/local/texlive/2018/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 INPUT /usr/local/texlive/2018/texmf-dist/tex/platex/jsclasses/jsarticle.cls
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map
@@ -41,9 +41,9 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/ascmac/ascmac.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/ascmac/tascmac.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/ascmac/tascmac.sty
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/ascmac/ascgrp.tfm
-INPUT 20200914.aux
-INPUT 20200914.aux
-OUTPUT 20200914.aux
+INPUT 20210510.aux
+INPUT 20210510.aux
+OUTPUT 20210510.aux
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm
@@ -63,6 +63,6 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/jknapltx/ursfs.fd
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/rsfs/rsfs7.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
-OUTPUT 20200914.dvi
+OUTPUT 20210510.dvi
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm
-INPUT 20200914.aux
+INPUT 20210510.aux
