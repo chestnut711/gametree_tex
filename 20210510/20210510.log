@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018) (preloaded format=platex 2018.12.9)  9 MAY 2021 10:09
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.euc) (TeX Live 2018) (preloaded format=platex 2018.12.9)  10 MAY 2021 08:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -173,33 +173,38 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
  [1
 
 ] [2]
-Overfull \hbox (6.66107pt too wide) in alignment at lines 107--114
+Overfull \hbox (6.66107pt too wide) in alignment at lines 111--118
  [][][] []
  []
 
 [3]
-Overfull \hbox (36.04788pt too wide) in alignment at lines 123--133
+Overfull \hbox (36.04788pt too wide) in alignment at lines 127--137
  [][][] []
  []
 
 
-Overfull \hbox (27.53119pt too wide) in alignment at lines 134--144
+Overfull \hbox (27.53119pt too wide) in alignment at lines 138--148
  [][][] []
  []
 
 [4] [5]
-Overfull \hbox (49.09021pt too wide) in alignment at lines 264--270
+Overfull \hbox (49.09021pt too wide) in alignment at lines 305--311
  [][][] []
  []
 
-[6] [7] [8] [9] (./20210510.aux) ) 
+[6] [7] [8] [9]
+Underfull \hbox (badness 1043) in paragraph at lines 433--434
+[]\OT1/cmr/m/n/10.95 Michael Saks,Avi Wigder-son \JY1/mc/m/n/10.95 「\OT1/cmr/m/n/10.95 PROB-A-BILIS-TIC BOOLEAN DE-CI-SION-TREES AND
+ []
+
+[10] (./20210510.aux) ) 
 Here is how much of TeX's memory you used:
- 1520 strings out of 493281
- 17618 string characters out of 6145041
- 100094 words of memory out of 5000000
- 5463 multiletter control sequences out of 15000+600000
+ 1522 strings out of 493281
+ 17645 string characters out of 6145041
+ 102094 words of memory out of 5000000
+ 5465 multiletter control sequences out of 15000+600000
  18761 words of font info for 78 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  27i,9n,27p,241b,286s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 20210510.dvi (9 pages, 34092 bytes).
+Output written on 20210510.dvi (10 pages, 38100 bytes).

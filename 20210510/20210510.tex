@@ -23,35 +23,39 @@
 
 \begin{center}
 
-  $balanced~tree~T_nの部分木を左からt_1,~t_2,\cdots,~t_n$\\
+  $各ノードの子がn個である木T_nの部分木を左からt_1,~t_2,\cdots,~t_n$\\
+  $rootの値が0であるときのT_nの均衡値をd_0(T_n)と表す$\\
+  $同様にrootの値が1であるときのT_nの均衡値をd_1(T_n)と表す$\\
   $t_1,~t_2,\cdots,~t_nのrootが~0~をとるコストを左から、a_1,~a_2,\cdots,~a_n$\\
   $t_1,~t_2,\cdots,~t_nのrootが~1~をとるコストを左から、b_1,~b_2,\cdots,~b_n$\\
   \vspace{3mm}
-  ${\rm W_{1}}$~=~${\rm W_{011\cdots11}}$\\
-  ${\rm W_{2}}$~=~${\rm W_{101\cdots11}}$\\
-  ~\vdots~~~~~~~~~~~\vdots~~~~~~\\
-  ${\rm W_{n-1}}$~=~${\rm W_{111\cdots01}}$~~~~\\
-  ${\rm W_{n}}$~=~${\rm W_{111\cdots10}}$\\
+  $t_iの値が0であるときの探索コストを{\rm W_{i}}と表す$\\
+  $(それぞれの部分木はr.d.aで最適なアルゴリズムで探索されるものとする)$\\
   \vspace{3mm}
-  調べ方は$n!$通りあり、$p_1,~p_2,\cdots,~p_m~~(m~=~n!)と書ける$\\
+  調べ方は$n!$通りあり、それぞれの調べ方に対する重みを$p_1,~p_2,\cdots,~p_m~~(m~=~n!)と表す$\\
   \vspace{3mm}
-  $T_nの均衡値d_0(T_n)を~\Psi_n~と表す$
+  $r.d.a全体の集合を\mathcal{A}$\\
+  \vspace{3mm}
+  $主結果を示すに、以下の関数を定義する$\\
+  $\Psi_n = \displaystyle\frac{\displaystyle\sum_{i=1}^{n}a_ib_i~+~\displaystyle\sum_{i=1,j=1}^{n}b_ib_j}{\displaystyle\sum_{i=1}^{n} b_i}~~(i\ne j)$
 \end{center}
 
 \newpage
 
-\section{証明} %セクションを作成
+\section{本稿の主結果} %セクションを作成
 
 \begin{itembox}[l]{定理}
   $任意の整数i,~j~(i\ne j,~1\leqq i,j \leqq n)に対して、~ a_i \leqq b_i + a_j ~~~ かつ ~~~ a_j \leqq a_i + b_j ~を満たすとき$
   \begin{center}
-    $d_0(T_n) ~ = ~ \displaystyle\frac{\displaystyle\sum_{i=1}^{n}a_ib_i~+~\displaystyle\sum_{i=1,j=1}^{n}a_ib_j}{\displaystyle\sum_{i=1}^{n} b_i} ~ = ~ \Psi_n $
+    $d_0(T_n) ~ = ~ \Psi_n $
   \end{center}
 \end{itembox}\\
 
+これを示すために2分木から考察する\\
+
 \underline{$n=2$}\\
 
-こちらに関しては、さっくす と　うぃるだぁそんが示しており\\
+こちらに関しては、Saks-Wigderson~が示しており\\
 
 \begin{center}
   $d_0(T_2) = \displaystyle\frac{a_1b_1+a_2b_2+b_1b_2}{b_1+b_2} = \Psi_2$
@@ -59,7 +63,7 @@
 
 \newpage
 
-\underline{$n=3について考察する$}\\
+\underline{$n=3$}\\
 \vspace{2mm}\\
 $n=3のとき、~p_1,~\ldots,~p_6~を以下のように定める$
 
@@ -195,7 +199,47 @@ a_3+b_2-a_2
 \right)
 \]}
 \end{itembox}
-さらに、主張1-1,~1-2,~1-3~より以下の主張が導き出せる\\
+
+主張1-4を変形すると以下の主張が導き出せる
+
+\begin{itembox}[l]{主張1-5}
+${\rm W_{1}}={\rm W_{2}}={\rm W_{3}} $
+{\scriptsize \[\Leftrightarrow
+\left(
+\begin{array}{c}
+p_4 \\
+p_5 \\
+p_6
+\end{array}
+\right)
+=
+\frac{1}{b_1+b_2+b_3}
+\left(
+\begin{array}{ccc}
+-(b_2+b_3) & -(b_2+b_3) & b_1 \\
+-(b_1+b_2) & b_3 & -(b_1+b_2) \\
+b_2 & -(b_1+b_3) & -(b_1+b_3)
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+p_1 \\
+p_2 \\
+p_3
+\end{array}
+\right)
++
+\frac{1}{b_1+b_2+b_3}
+\left(
+\begin{array}{c}
+a_2+b_3-a_3 \\
+a_1+b_2-a_2 \\
+a_3+b_1-a_1
+\end{array}
+\right)
+\]}
+\end{itembox}
+主張1-4,~1-5より以下の主張が導き出せる
 
 \begin{itembox}[l]{主張2-1}
 ${\rm W_{1}} \geqq {\rm W_{2}}\Leftrightarrow $
@@ -209,6 +253,7 @@ ${\rm W_{2}}\geqq{\rm W_{3}}\Leftrightarrow p_3\geqq\frac{1}{b_1+b_2+b_3}\{b_1p_
 \begin{itembox}[l]{主張2-3}
 ${\rm W_{3}}\geqq{\rm W_{2}}\Leftrightarrow p_1\geqq\frac{1}{b_1+b_2+b_3}\{-(b_1+b_3)p_4-(b_1+b_3)p_5+b_2p_6\}+\frac{1}{b_1+b_2+b_3}(a_1+b_3-a_3)$
 \end{itembox}
+
 
 \begin{itembox}[l]{主張2-4}
 ${\rm W_{2}}\geqq{\rm W_{3}}\Leftrightarrow p_5\geqq\frac{1}{b_1+b_2+b_3}\{-(b_2+b_1)p_1+b_3p_2-(b_2+b_1)p_3\}+\frac{1}{b_1+b_2+b_3}(a_1+b_2-a_2)$
@@ -224,11 +269,7 @@ ${\rm W_{1}}\geqq{\rm W_{3}}\Leftrightarrow p_6\geqq\frac{1}{b_1+b_2+b_3}\{b_2p_
 
 \vspace{4mm}
 
-以上の主張を踏まえて、$d_0(T_3)=\Psi_3$を示していく
-
-
-\newpage
-
+以上の主張を踏まえて、$d_0(T_3)=\Psi_3$を示していく\\
 
 まず、主張1-4$~の右辺を満たすアルゴリズム全体の集合をP$と置く。\\
 ここで、$任意のアルゴリズムA\in Pの下では、{\rm W_{1}}={\rm W_{2}}={\rm W_{3}}$となるため\\
@@ -312,46 +353,85 @@ $d_0(T_n) = \Psi_n$を示す\\
   $d_0(T_{n-1})=\Psi_{n-1}$~が成立すると仮定する
 \end{center}
 
-最初または最後に$t_i~(1,~\ldots,~i,~\ldots,~n)$を調べるアルゴリズム全体の集合を$V$とする
-ここで、$T_nをt_iと残りn-1個の部分木の2分木だと捉えると$←書き方わからん
+最初に$t_n$を調べるアルゴリズム全体の集合を$V$とする\\
+$T_nをt_nと残りn-1個の部分木の2分木だと捉えると$
 
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
      & \multicolumn{1}{c|}{アルゴリズム} & \multicolumn{2}{c|}{コスト} \\ \cline{1-4}
-重み  & 探索する順番 & ${\rm W_{1}}$ & ${\rm W_{2}}$ \\ \hline
+重み  & 探索する順番 & ${\rm W_{1}}=\cdots={\rm W_{n-1}}$ & ${\rm W_{n}}$ \\ \hline
 $p_1$ & $t_1, t_2$ & $\Psi_{n-1}$  & $b_1+\cdots+b_{n-1}+a_n$  \\ \hline
 $1-p_1$ & $t_2, t_1$ & $b_1+\Psi_{n-1}$  & $a_n$ \\ \hline
 \end{tabular}
 \end{center}
-このときのコスト期待値${\rm W_{1}},~{\rm W_{2}}は$
+このときのコスト期待値${\rm W_{1}},~{\rm W_{n}}は$
 \begin{eqnarray*}
   {\rm W_{1}}&=&p_1\Psi_{n-1}+(1-p_1)(b_n+\Psi_{n-1})\\
   &=&(1-p_1)b_n+\Psi_{n-1}\\
-  {\rm W_{2}}&=&p_1(b_1+\cdots+b_{n-1}+a_n)+(1-p_1)a_n\\
+  {\rm W_{n}}&=&p_1(b_1+\cdots+b_{n-1}+a_n)+(1-p_1)a_n\\
   &=&p_1(b_1+\cdots+b_{n-1})+a_n
 \end{eqnarray*}
-ここで、${\rm W_{1}}={\rm W_{2}}とすると$
+${\rm W_{1}}={\rm W_{n}}とすると$
 \begin{eqnarray*}
-  {\rm W_{1}}&=&{\rm W_{2}}\\
+  {\rm W_{1}}&=&{\rm W_{n}}\\
   (1-p_1)b_n+\Psi_{n-1}&=&p_1(b_1+\cdots+b_{n-1})+a_n\\
   p_1(b_1+\cdots+b_{n})&=&\Psi_{n-1}-a_n+b_n\\
   p_1&=&\displaystyle\frac{\Psi_{n-1}-a_n+b_n}{b_1+\cdots+b_{n}}
 \end{eqnarray*}
-${\rm W_{1}},~{\rm W_{2}}~に~p_1~を代入すると$
+$ここで、0\leqq p_1\leqq 1$を示す
 \begin{center}
-  ${\rm W_{1}}={\rm W_{2}}=\Psi_n$
+  $\Psi_{n-1}\leqq b_1+\cdots+b_{n-1}+a_n$\\
+  $a_n\leqq \Psi_{n-1}+b_n$
 \end{center}
-以上から、$d_0(T_n) \leqq \Psi_n$
+を示せばよい\\
+帰納法の仮定より、${\rm W_{1}},~\cdots,~{\rm W_{n-1}}は交点を持つ$\\
+また、仮定より$a_{n-1}\leqq b_{n-1}+a_n$が成立するため
+\begin{center}
+  \begin{eqnarray*}
+  min~{\rm W_{n-1}} &\leqq& \Psi_{n-1} ~\leqq~ max~{\rm W_{n-1}}\\
+  \Leftrightarrow ~~~~~~~~~a_{n-1} &\leqq& \Psi_{n-1} ~\leqq~ b_1+\cdots+b_{n-2}+a_{n-1}\\
+  \Leftrightarrow ~~~~~~~~~a_{n-1} &\leqq& \Psi_{n-1} ~\leqq~ b_1+\cdots+b_{n-2}+a_{n-1} ~\leqq~ b_1+\cdots+b_{n-1}+a_{n}
+\end{eqnarray*}
+\end{center}
+よって、$\Psi_{n-1}\leqq b_1+\cdots+b_{n-1}+a_n$が成立\\
+\vspace{3mm}\\
+また、$a_n \leqq b_n + a_{n-1}~より$
+\begin{center}
+  \begin{eqnarray*}
+  min~{\rm W_{n-1}} &\leqq& \Psi_{n-1}\\
+  \Leftrightarrow ~~~~~~~~~~~~~~~~~~~a_{n-1} &\leqq& \Psi_{n-1}\\
+  \Leftrightarrow ~~~~~~~~~~~~a_{n-1} +b_n &\leqq& \Psi_{n-1} + b_n\\
+  \Leftrightarrow ~~~a_n~\leqq~a_{n-1} +b_n &\leqq& \Psi_{n-1} + b_n
+\end{eqnarray*}
+\end{center}
+よって、$a_n\leqq \Psi_{n-1}+b_n$が成立\\
+\vspace{3mm}\\
+以上より、$0\leqq p_1\leqq 1$を示せた
+\vspace{3mm}\\
+${\rm W_{1}},~{\rm W_{n}}~に~p_1~を代入すると$
+\begin{center}
+  ${\rm W_{1}}={\rm W_{n}}=\Psi_n$
+\end{center}
+以上から、$V上では、d_0(T_n)=\Psi_nが成立するため$\\
+$\mathcal{A}上では、d_0(T_n) \leqq \Psi_n~$が成立
 
 \newpage
 
-次に、$d_0(T_n) \geqq \Psi_n$~を示す~~~$W_iのWeight?を~\displaystyle\frac{b_i}{\displaystyle\sum_{j=1}^{n} b_j}$とし\\
+次に、$d_0(T_n) \geqq \Psi_n$~を示す\\
+Yaoのminmax Lemmaを利用する
+$W_iのWeight?を~\displaystyle\frac{b_i}{\displaystyle\sum_{j=1}^{n} b_j}$とし\\
 \begin{eqnarray*}
 cost&=&\displaystyle\frac{b_1}{\displaystyle\sum_{j=1}^{n} b_j}a_1+\displaystyle\frac{b_2}{\displaystyle\sum_{j=1}^{n} b_j}(b_1+a_2)+\cdots+\displaystyle\frac{b_n}{\displaystyle\sum_{j=1}^{n} b_j}(b_1+b_2+\cdots+b_{n-1}+a_n)\\
 &=&\displaystyle\frac{1}{\displaystyle\sum_{j=1}^{n} b_j}(a_1b_1+(a_2b_2+b_1b_2)+\cdots+(a_nb_n+b_1b_n+\cdots+b_{n-1}b_n))\\
 &=&\displaystyle\frac{\displaystyle\sum_{i=1}^{n}a_ib_i~+~\displaystyle\sum_{i=1,j=1}^{n}a_ib_j}{\displaystyle\sum_{i=1}^{n} b_i}\\
 &=&\Psi_n
 \end{eqnarray*}\\
-よって、Yaoなんちゃらを使って下からおさえる
+よって、Yaoを使って下からおさえる
+
+\begin{thebibliography}{9} %この位置に文献表を作成
+\bibitem{Saks-Wigderson} Michael Saks,Avi Wigderson「PROBABILISTIC BOOLEAN DECISIONTREES AND COMPLEXITY OF EVALUATING GAME TREES」
+\bibitem{Yoshinaga} 有本宗史「非対称な2分AND-OR木の探索コスト」
+\end{thebibliography}
+
 \end{document}
