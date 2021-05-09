@@ -1,92 +1,166 @@
-\documentclass[12pt]{jsarticle}
+\documentclass[11pt]{jarticle} %jarticleクラスを使用，文字サイズを11ポイントに設定
+\setlength{\textheight}{23cm} %本文領域の高さ（縦幅）を23cmに設定
+\setlength{\textwidth}{16cm} %本文領域の横幅を16cmに設定
+\setlength{\oddsidemargin}{0cm} %左端の余白をデフォルトから0cmに設定
+\setlength{\topmargin}{0cm} %上端の余白をデフォルトから0cmに設定
+\renewcommand{\baselinestretch}{1.2} %行間をデフォルトの1.2倍に設定
+\title{n分木の均衡値} %タイトルを記入
+\author{栗田 亮也~~~~清水 泰良\\（東京都立大学 理学研究科 数理科学専攻）} %著者名を記入
+\date{令和3年5月10日} %日付を記入
 
 \usepackage{amsmath,amssymb,amsbsy,amscd,mathrsfs}
 \usepackage{fancybox,ascmac}
 
 \begin{document}
 
+
+\maketitle %この位置にタイトルを作成
+
+
 \noindent
-rootが$\land$の3分木Tを考える.\\
-rootの子を左から$a,b,c$とする,\\
-この時,$d_0(a)=a_0 , \ d_1(a)=a$と表す.$b,c$も同様にして定める.\\
+
+\section{定義} %セクションを作成
+
+\begin{center}
+
+  $balanced~tree~T_nの部分木を左からt_1,~t_2,\cdots,~t_n$\\
+  $t_1,~t_2,\cdots,~t_nのrootが~0~をとるコストを左から、a_1,~a_2,\cdots,~a_n$\\
+  $t_1,~t_2,\cdots,~t_nのrootが~1~をとるコストを左から、b_1,~b_2,\cdots,~b_n$\\
+  \vspace{3mm}
+  ${\rm W_{1}}$~=~${\rm W_{011\cdots11}}$\\
+  ${\rm W_{2}}$~=~${\rm W_{101\cdots11}}$\\
+  ~\vdots~~~~~~~~~~~\vdots~~~~~~\\
+  ${\rm W_{n-1}}$~=~${\rm W_{111\cdots01}}$~~~~\\
+  ${\rm W_{n}}$~=~${\rm W_{111\cdots10}}$\\
+  \vspace{3mm}
+  調べ方は$n!$通りあり、$p_1,~p_2,\cdots,~p_m~~(m~=~n!)と書ける$\\
+  \vspace{3mm}
+  $T_nの均衡値d_0(T_n)を~\Psi_n~と表す$
+\end{center}
+
+\newpage
+
+\section{証明} %セクションを作成
+
+\begin{itembox}[l]{定理}
+  $任意の整数i,~j~(i\ne j,~1\leqq i,j \leqq n)に対して、~ a_i \leqq b_i + a_j ~~~ かつ ~~~ a_j \leqq a_i + b_j ~を満たすとき$
+  \begin{center}
+    $d_0(T_n) ~ = ~ \displaystyle\frac{\displaystyle\sum_{i=1}^{n}a_ib_i~+~\displaystyle\sum_{i=1,j=1}^{n}a_ib_j}{\displaystyle\sum_{i=1}^{n} b_i} ~ = ~ \Psi_n $
+  \end{center}
+\end{itembox}\\
+
+\underline{$n=2$}\\
+
+こちらに関しては、さっくす と　うぃるだぁそんが示しており\\
+
+\begin{center}
+  $d_0(T_2) = \displaystyle\frac{a_1b_1+a_2b_2+b_1b_2}{b_1+b_2} = \Psi_2$
+\end{center}
+
+\newpage
+
+\underline{$n=3について考察する$}\\
+\vspace{2mm}\\
+$n=3のとき、~p_1,~\ldots,~p_6~を以下のように定める$
+
+\vspace{3mm}
+
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
      & \multicolumn{1}{c|}{アルゴリズム} & \multicolumn{3}{c|}{コスト} \\ \cline{1-5}
-重み  & 探索する順番 & $(a,b,c)=(0,1,1)$ & (1,0,1) & (1,1,0) \\ \hline
-$p_1$ & $a, b, c$ & $a_0$  & $a+b_0$  & $a+b+c_0$  \\ \hline
-$p_2$ & $b, c, a$ & $a_0+b+c$  & $b_0$  & $b+c_0$  \\ \hline
-$p_3$ & $c, a, b$ & $a_0+c $ & $a+b_0+c$  & $c_0 $ \\ \hline
-$p_4$ & $b, a, c$ & $a_0+b$ & $b_0$  & $a+b+c_0$  \\ \hline
-$p_5$ & $a, c, b$ & $a_0 $ & $a+b_0+c$ & $a+c_0$ \\ \hline
-$p_6$ & $c, b, a$ & $a_0+b+c$  & $b_0+c$ & $c_0$  \\ \hline
+重み  & 探索する順番 & ${\rm W_{1}}$ & ${\rm W_{2}}$ & ${\rm W_{1}}$ \\ \hline
+$p_1$ & $t_1, t_2, t_3$ & $a_1$  & $b_1+a_2$  & $b_1+b_2+a_3$  \\ \hline
+$p_2$ & $t_2, t_3, t_1$ & $a_1+b_2+b_3$  & $a_2$  & $b_2+a_3$  \\ \hline
+$p_3$ & $t_3, t_1, t_2$ & $a_1+b_3 $ & $b_1+a_2+b_3$  & $a_3 $ \\ \hline
+$p_4$ & $t_2, t_1, t_3$ & $a_1+b_2$ & $a_2$  & $b_1+b_2+a_3$  \\ \hline
+$p_5$ & $t_1, t_3, t_2$ & $a_1$ & $b_1+a_2+b_3$ & $b_1+a_3$ \\ \hline
+$p_6$ & $t_3, t_2, t_1$ & $a_1+b_2+b_3$  & $a_2+b_3$ & $a_3$  \\ \hline
 \end{tabular}
 \end{center}
-$(a,b,c)=(0,1,1)$である時のコストを${\rm W_{011}}$,他同様にして${\rm W_{101}}$, ${\rm W_{110}}$とすると,\\\\
-${\rm W_{011}}=a_0+(b+c)p_2+cp_3+bp_4+(b+c)p_6 \ \ \ \ \, (1.1)$\\
-${\rm W_{101}}=ap_1+b_0+(a+c)p_3+(a+c)p_5+cp_6 \ \ \ \ (1.2)$\\
-${\rm W_{110}}=(a+b)p_1+bp_2+c_0+(a+b)p_4+ap_5 \ \ \ \ (1.3)$\\\\
 
-ここで、$a_0=b_0=c_0~かつ~a=b=cのときはd_0(T)=\Psi 'を示せている$\\\\
+\begin{flushleft}
+  このときのコスト期待値${\rm W_{1}},~{\rm W_{2}},~{\rm W_{3}}~は$
+\end{flushleft}
 
-$proof$\\
-背理法で示す.即ち, $\Psi' > d_0(T)$となる様な, $(p_1',p_2',\ldots,p_6')$が存在すると仮定.\\
-この時, $(p_1',p_2',\ldots,p_6')$の下での,  ${\rm W}_{011}, {\rm W}_{101}, {\rm W}_{110}$を
-${\rm W_{011}}',{\rm W_{101}}',{\rm W_{110}}'$と表すと, 以下のようになる.\\
-${\rm W_{011}}'=a_0+a+a(p_2'+p_6')-a(p_1'+p_5')$\\
-${\rm W_{101}}'=a_0+a+a(p_3'+p_5')-a(p_2'+p_4')$\\
-${\rm W_{011}}'=a_0+a+a(p_1'+p_4')-a(p_3'+p_6')$\\
-この時,  $\Psi' > d_0(T)$より,
 \begin{center}
- $\Psi' >{\rm W_{011}}' $かつ$\Psi' > {\rm W_{101}}'$かつ $\Psi' >{\rm W_{110}}' $.
+
+${\rm W_{1}}=a_1+(b_2+b_3)p_2+b_3p_3+b_2p_4+(b_2+b_3)p_6 \ \ \ \ \, (1.1)$\\
+${\rm W_{2}}=b_1p_1+a_2+(b_1+b_3)p_3+(b_1+b_3)p_5+b_3p_6 \ \ \ \ (1.2)$\\
+${\rm W_{3}}=(b_1+b_2)p_1+b_2p_2+a_3+(b_1+b_2)p_4+b_1p_5 \ \ \ \ (1.3)$
+
 \end{center}
-であることに注意すると, $\Psi' > d_0(T)$となる様な, $(p_1',p_2',\ldots,p_6')$が存在する為の必要十分条件は,
-\begin{center}
- $(p_1'+p_5') >(p_2'+p_6') $かつ $(p_2'+p_4') >(p_3'+p_5') $かつ  $(p_3'+p_6') >(p_1'+p_4') $.
-\end{center}
-一方,
+
+\begin{flushleft}
+  と表すことができる\\
+  また、ここでいくつかの主張を示す
+\end{flushleft}
+
+\begin{itembox}[l]{主張1-1}
+${\rm W_{1}} = {\rm W_{2}}\Leftrightarrow $
+$p_2 = \frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)$
+\end{itembox}
+
+(証明)\\
+${\rm W_{1}}={\rm W_{2}}\Rightarrow $
+$p_2=\frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)$を示す。
 \begin{eqnarray*}
-(p_1'+p_5') +(p_2'+p_4') +(p_3'+p_6')&>&(p_2'+p_6') +(p_3'+p_5')+(p_1'+p_4')\\
-p_1'+p_2'+p_3'+p_4'+p_5'+p_6'&>&p_1'+p_2'+p_3'+p_4'+p_5'+p_6' \\
-1&>&1
+{\rm W_{1}}&=&{\rm W_{2}}\\
+a_1+(b_2+b_3)p_2+b_3p_3+b_2p_4+(b_2+b_3)p_6&=&b_1p_1+a_2+(b_1+b_3)p_3+(b_1+b_3)p_5+b_3p_6\\
+-b_1p_1+(b_2+b_3)p_2-b_1p_3&=&-b_2p_4+(b_1+b_3)p_5-b_2p_6+a_2-a_1\\
+-b_1(p_1+p_3)+(b_2+b_3)p_2&=&-b_2p_4+(b_1+b_3)p_5-b_2p_6+a_2-a_1\\
+-b_1(1-p_2-p_4-p_5-p_6)+(b_2+b_3)p_2&=&-b_2p_4+(b_1+b_3)p_5-b_2p_4+a_2-a_1\\
+(b_1+b_2+b_3)p_2&=&-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6+a_2+b_1-a_1
+\end{eqnarray*}\\
+
+
+\vspace{5mm}
+次に\\
+$p_2=\frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)\Rightarrow $
+${\rm W_{1}}={\rm W_{2}}$を示す\\
+\vspace{3mm}\\
+$p_2=\frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)$を(1.1),(1.2)に代入すると
+\begin{eqnarray*}
+{\rm W_{1}}&=&a_1+(b_2+b_3)p_2+b_3p_3+b_2p_4+(b_2+b_3)p_6 \\
+&=&a_1+(b_2+b_3) \left(\frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)\right) \\
+&&\hspace{265pt}+b_3p_3+b_2p_4+(b_2+b_3)p_6 \\
+&=& a_1+ b_3p_3+\left(\frac{-(b_2+b_3)(b_1+b_2)}{b_1+b_2+b_3}+b_2 \right) p_4 +\frac{b_3(b_2+b_3)}{b_1+b_2+b_3}p_5 \\
+&&\hspace{120pt}+ \left(-\frac{(b_2+b_3)(b_1+b_2)}{b_1+b_2+b_3}+(b_2+b_3) \right)p_6+\frac{(b_2+b_3)(a_2+b_1-a_1)}{b_1+b_2+b_3}\\
+&=&a_1+b_3p_3-\frac{b_1b_3}{b_1+b_2+b_3}p_4+\frac{b_3(b_2+b_3)}{b_1+b_2+b_3}p_5+
+\frac{b_3(b_2+b_3)}{b_1+b_2+b_3}p_6+\frac{(b_2+b_3)(a_2+b_1-a_1)}{b_1+b_2+b_3} \\
+&=&\frac{a_1b_1+a_2b_2+a_2b_3+b_1b_2+b_1b_3}{b_1+b_2+b_3}+b_3p_3-\frac{b_1b_3}{b_1+b_2+b_3}p_4+\frac{b_3(b_2+b_3)}{b_1+b_2+b_3}p_5+
+\frac{b_3(b_2+b_3)}{b_1+b_2+b_3}p_6
 \end{eqnarray*}
-これは矛盾.\\
-よって, $d_0(T)=\Psi'$\\\\
+\begin{eqnarray*}
+{\rm W_{2}}&=&b_1p_1+a_2+(b_1+b_3)p_3+(b_1+b_3)p_5+b_3p_6\\
+&=&b_1(p_1+p_3)+a_2+b_3p_3+(b_1+b_3)p_5+b_3p_6 \\
+&=&b_1(1-p_2-p_4-p_5-p_6)+a_2+b_3p_3+(b_1+b_3)p_5+b_3p_6\\
+&=&b_1+a_2-b_1p_2+b_3p_3-b_1p_4+b_3p_5+(-b_1+b_3)p_6\\
+&=&b_1+a_2-b_1\left(\frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)\right)\\
+&&\hspace{230pt}+b_3p_3-b_1p_4+b_3p_5+(-b_1+b_3)p_6\\
+&=&b_1+a_2-\frac{b_1(a_2+b_1-a_1)}{b_1+b_2+b_3}+b_3p_3+\left(\frac{b_1(b_1+b_2)}{b_1+b_2+b_3}-b_1 \right) p_4+\left(-\frac{b_1b_3}{b_1+b_2+b_3}+b_3\right)p_5\\
+&&\hspace{230pt}+\left(\frac{b_1(b_1+b_2)}{b_1+b_2+b_3}+(-b_1+b_3) \right) p_6\\
+&=&\frac{a_1b_1+a_2b_2+a_2b_3+b_1b_2+b_1b_3}{b_1+b_2+b_3}+b_3p_3-\frac{b_1b_3}{b_1+b_2+b_3}p_4+\frac{b_3(b_2+b_3)}{b_1+b_2+b_3}p_5+\frac{b_3(b_2+b_3)}{b_1+b_2+b_3}p_6
+\end{eqnarray*}
+よって, ${\rm W_{1}}={\rm W_{2}}$\\
+以上より、主張が言えた\\
+同様の方法で以下の主張1-2,~1-3も示すことができる\\
 
-\vspace{5mm}\\
-次に、$a=b=c~のとき、d_0(T)=\Psi '~を示す$\\\\
-$proof$\\
-前回までに、$d^*_0(T)を$\\\\
-$d^*_0(T)~:~{\rm W_{011}},~{\rm W_{101}},~{\rm W_{110}}~の3式が等しいRDAに限定したd_0(T)$\\\\
-と定義したとき、$d^*_0(T)=\Psi '$~は示せている\\
-ここで、$d^*_0(T)=d_0(T)$を示す\\
-この等式を示すには、${\rm W_{011}},~{\rm W_{101}},~{\rm W_{110}}~の3式が等しくなるようなRDAの存在を言えばいい$\\
-\begin{itembox}[l]{主張1}
-${\rm W_{011}}={\rm W_{101}}\Leftrightarrow $
-$p_2=\frac{1}{a+b+c}\{-(a+b)p_4+cp_5-(a+b)p_6\}+\frac{1}{a+b+c}(b_0+a-a_0)$
+\vspace{5mm}
+
+\begin{itembox}[l]{主張1-2}
+${\rm W_{2}}={\rm W_{3}}\Leftrightarrow p_3=\frac{1}{b_1+b_2+b_3}\{b_1p_4-(b_2+b_3)p_5-(b_2+b_3)p_6\}+\frac{1}{b_1+b_2+b_3}(a_3+b_2-a_2)$
 \end{itembox}
-\begin{itembox}[l]{主張2}
-${\rm W_{101}}={\rm W_{110}}\Leftrightarrow p_3=\frac{1}{a+b+c}\{ap_4-(b+c)p_5-(b+c)p_6\}+\frac{1}{a+b+c}(c_0+b-b_0)$
+%主張3
+\begin{itembox}[l]{主張1-3}
+${\rm W_{3}}={\rm W_{1}}\Leftrightarrow p_1=\frac{1}{b_1+b_2+b_3}\{-(b_1+b_3)p_4-(b_1+b_3)p_5+b_2p_6\}+\frac{1}{b_1+b_2+b_3}(a_1+b_3-a_3)$
 \end{itembox}
-\begin{itembox}[l]{主張3}
-${\rm W_{011}}={\rm W_{110}}\Leftrightarrow p_1=\frac{1}{a+b+c}\{-(a+c)p_4-(a+c)p_5+bp_6\}+\frac{1}{a+b+c}(a_0+c-c_0)$
-\end{itembox}\\
-以上の主張より、\\
-$p_1=\frac{1}{3}\{-ap_4-ap_5+p_6\}+\frac{1}{3a}(a_0+a-c_0)$\\
-$p_2=\frac{1}{3}\{-ap_4+p_5-ap_6\}+\frac{1}{3a}(b_0+a-a_0)$\\
-$p_3=\frac{1}{3}\{p_4-ap_5-ap_6\}+\frac{1}{3a}(c_0+a-b_0)$\\
-を満たすように、$(p_1,\ldots,p_6)の組み合わせをとれば、{\rm W_{011}}={\rm W_{101}}={\rm W_{110}}~が成り立つ$\\
-$ため、{\rm W_{011}},~{\rm W_{101}},~{\rm W_{110}}~の3式が等しくなるようなRDAの存在を言えた$\\
-以上から、$d^*_0(T)=d_0(T)$を示せた。\\
-よって$a=b=c~のときd_0(T)=\Psi '$\\\\
 
+また、以上の主張1-1,~1-2,~1-3より以下の主張1-4を導き出せる
 
-$a_0=b_0=c_0のときd_0(T)=\Psi 'を示す$\\\\
-$proof$\\\\
-前回までの内容より、$以下の主張4が言えており$
-\begin{itembox}[l]{主張4}
-${\rm W_{011}}={\rm W_{101}}={\rm W_{110}} $
-{\scriptsize  \[\Leftrightarrow
+\begin{itembox}[l]{主張1-4}
+${\rm W_{1}}={\rm W_{2}}={\rm W_{3}} $
+{\scriptsize \[\Leftrightarrow
 \left(
 \begin{array}{c}
 p_1 \\
@@ -95,12 +169,12 @@ p_3
 \end{array}
 \right)
 =
-\frac{1}{a+b+c}
+\frac{1}{b_1+b_2+b_3}
 \left(
 \begin{array}{ccc}
--(a+c) & -(a+c) & b \\
--(a+b)  & c  & -(a+b) \\
-a   & -(b+c) & -(b+c)
+-(b_1+b_3) & -(b_1+b_3) & b_2 \\
+-(b_1+b_2) & b_3 & -(b_1+b_2) \\
+b_1 & -(b_2+b_3) & -(b_2+b_3)
 \end{array}
 \right)
 \left(
@@ -111,61 +185,173 @@ p_6
 \end{array}
 \right)
 +
-\frac{1}{a+b+c}
+\frac{1}{b_1+b_2+b_3}
 \left(
 \begin{array}{c}
-a_0+c-c_0 \\
-b_0+a-a_0 \\
-c_0+b-b_0
+a_1+b_3-a_3 \\
+a_2+b_1-a_1 \\
+a_3+b_2-a_2
 \end{array}
 \right)
 \]}
-\end{itembox}\\\\
-$a_0=b_0=c_0$のとき、以下の主張4'が成り立つ\\\\
-\begin{itembox}[l]{主張4'}
-${\rm W_{011}}={\rm W_{101}}={\rm W_{110}} $
-{\scriptsize  \[\Leftrightarrow
-\left(
-\begin{array}{c}
-p_1 \\
-p_2 \\
-p_3
-\end{array}
-\right)
-=
-\frac{1}{a+b+c}
-\left(
-\begin{array}{ccc}
--(a+c) & -(a+c) & b \\
--(a+b)  & c  & -(a+b) \\
-a   & -(b+c) & -(b+c)
-\end{array}
-\right)
-\left(
-\begin{array}{c}
-p_4 \\
-p_5 \\
-p_6
-\end{array}
-\right)
-+
-\frac{1}{a+b+c}
-\left(
-\begin{array}{c}
-c \\
-a \\
-b
-\end{array}
-\right)
-\]}
-\end{itembox}\\\\
-ここで\\\\
-$p_1=\frac{1}{a+b+c}\{-(a+c)p_4-(a+c)p_5+bp_6\}+\frac{c}{a+b+c}$\\
-$p_2=\frac{1}{a+b+c}\{-(a+b)p_4+cp_5-(a+b)p_6\}+\frac{a}{a+b+c}$\\
-$p_3=\frac{1}{a+b+c}\{ap_4-(b+c)p_5-(b+c)p_6\}+\frac{b}{a+b+c}$\\\\
-を満たすように$(p_1,\ldots,p_6)の組み合わせをとれば$\\
-${\rm W_{011}}={\rm W_{101}}={\rm W_{110}} $を満たし、\\
-$a_0=b_0=c_0のときd_0(T)=\Psi 'を示せた$\\
+\end{itembox}
+さらに、主張1-1,~1-2,~1-3~より以下の主張が導き出せる\\
+
+\begin{itembox}[l]{主張2-1}
+${\rm W_{1}} \geqq {\rm W_{2}}\Leftrightarrow $
+$p_2 \geqq \frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)$
+\end{itembox}
+
+\begin{itembox}[l]{主張2-2}
+${\rm W_{2}}\geqq{\rm W_{3}}\Leftrightarrow p_3\geqq\frac{1}{b_1+b_2+b_3}\{b_1p_4-(b_2+b_3)p_5-(b_2+b_3)p_6\}+\frac{1}{b_1+b_2+b_3}(a_3+b_2-a_2)$
+\end{itembox}
+%主張3
+\begin{itembox}[l]{主張2-3}
+${\rm W_{3}}\geqq{\rm W_{2}}\Leftrightarrow p_1\geqq\frac{1}{b_1+b_2+b_3}\{-(b_1+b_3)p_4-(b_1+b_3)p_5+b_2p_6\}+\frac{1}{b_1+b_2+b_3}(a_1+b_3-a_3)$
+\end{itembox}
+
+\begin{itembox}[l]{主張2-4}
+${\rm W_{2}}\geqq{\rm W_{3}}\Leftrightarrow p_5\geqq\frac{1}{b_1+b_2+b_3}\{-(b_2+b_1)p_1+b_3p_2-(b_2+b_1)p_3\}+\frac{1}{b_1+b_2+b_3}(a_1+b_2-a_2)$
+\end{itembox}
+
+\begin{itembox}[l]{主張2-5}
+${\rm W_{3}}\geqq{\rm W_{2}}\Leftrightarrow p_4\geqq\frac{1}{b_1+b_2+b_3}\{-(b_3+b_2)p_1-(b_3+b_2)p_2+b_1p_3\}+\frac{1}{b_1+b_2+b_3}(a_2+b_3-a_3)$
+\end{itembox}
+
+\begin{itembox}[l]{主張2-6}
+${\rm W_{1}}\geqq{\rm W_{3}}\Leftrightarrow p_6\geqq\frac{1}{b_1+b_2+b_3}\{b_2p_1-(b_1+b_3)p_2-(b_1+b_3)p_3\}+\frac{1}{b_1+b_2+b_3}(a_3+b_3-a_1)$
+\end{itembox}
+
+\vspace{4mm}
+
+以上の主張を踏まえて、$d_0(T_3)=\Psi_3$を示していく
 
 
+\newpage
+
+
+まず、主張1-4$~の右辺を満たすアルゴリズム全体の集合をP$と置く。\\
+ここで、$任意のアルゴリズムA\in Pの下では、{\rm W_{1}}={\rm W_{2}}={\rm W_{3}}$となるため\\
+${\rm W_{1}},~{\rm W_{2}},~{\rm W_{3}}~のそれぞれに$主張1-4右辺の$p_1,~p_2,~p_3を代入すると$\\
+\begin{center}
+  ${\rm W_{1}}={\rm W_{2}}={\rm W_{3}}=\displaystyle\frac{a_1b_1+a_2b_2+a_3b_3+b_1b_2+b_2b_3+b_3b_1}{b_1+b_2+b_3}=\Psi_3$
+\end{center}
+となる\\
+\vspace{3mm}\\
+また、主張1-4$の右辺を満たさないアルゴリズム全体の集合をQと置く。$\\
+$任意のアルゴリズムB\in Qの下で、{\rm W_{1}},~{\rm W_{2}},~{\rm W_{3}}~は、以下の大小関係のいずれかで表される$
+\vspace{5mm}
+\begin{center}
+  ${\rm W_{1}}~\geqq~{\rm W_{2}}~\geqq~{\rm W_{3}}$\\
+  ${\rm W_{2}}~\geqq~{\rm W_{3}}~\geqq~{\rm W_{1}}$\\
+  ${\rm W_{3}}~\geqq~{\rm W_{1}}~\geqq~{\rm W_{2}}$\\
+  ${\rm W_{1}}~\geqq~{\rm W_{3}}~\geqq~{\rm W_{2}}$\\
+  ${\rm W_{2}}~\geqq~{\rm W_{1}}~\geqq~{\rm W_{3}}$\\
+  ${\rm W_{3}}~\geqq~{\rm W_{2}}~\geqq~{\rm W_{1}}$
+\end{center}
+
+ここで、それぞれの大小関係に対して、$\Psi_3~と{\rm W_{1}},~{\rm W_{2}},~{\rm W_{3}}との関係を考える$\\
+
+$\underline{case1}~~~{\rm W_{1}}~\geqq~{\rm W_{2}}~\geqq~{\rm W_{3}}~のとき$\\
+\vspace{3mm}
+${\rm W_{1}}~\geqq~{\rm W_{2}},~{\rm W_{2}}~\geqq~{\rm W_{3}}であるから、主張1,2より、$
+\begin{center}
+$p_2 \geqq \frac{1}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)$\\
+$p_3\geqq\frac{1}{b_1+b_2+b_3}\{b_1p_4-(b_2+b_3)p_5-(b_2+b_3)p_6\}+\frac{1}{b_1+b_2+b_3}(a_3+b_2-a_2)~~~$
+\end{center}
+が成立、よって
+\begin{center}
+  \begin{eqnarray*}
+      {\rm W_{1}}&=&a_1+(b_2+b_3)p_2+b_3p_3+b_2p_4+(b_2+b_3)p_6\\
+      &\geqq&a_1+\frac{b_2+b_3}{b_1+b_2+b_3}\{-(b_1+b_2)p_4+b_3p_5-(b_1+b_2)p_6\}+\frac{1}{b_1+b_2+b_3}(a_2+b_1-a_1)\\
+      &~~&+\frac{b_3}{b_1+b_2+b_3}\{b_1p_4-(b_2+b_3)p_5-(b_2+b_3)p_6\}+\frac{1}{b_1+b_2+b_3}(a_3+b_2-a_2)+b_2p_4+(b_2+b_3)p_6\\\\
+      &=&\frac{a_1b_1+a_2b_2+a_3b_3+b_1b_2+b_2b_3+b_3b_1}{b_1+b_2+b_3}\\
+      &=&\Psi_3
+  \end{eqnarray*}\\
+\end{center}
+同様に、\\
+$\underline{case2}~~~{\rm W_{2}}~\geqq~{\rm W_{3}}~\geqq~{\rm W_{1}}~のとき$\\
+\begin{center}
+  ${\rm W_{2}}~\geqq~\Psi_3$
+\end{center}
+$\underline{case3}~~~{\rm W_{3}}~\geqq~{\rm W_{1}}~\geqq~{\rm W_{2}}~のとき$\\
+\begin{center}
+  ${\rm W_{3}}~\geqq~\Psi_3$
+\end{center}
+$\underline{case4}~~~{\rm W_{1}}~\geqq~{\rm W_{3}}~\geqq~{\rm W_{2}}~のとき$\\
+\begin{center}
+  ${\rm W_{1}}~\geqq~\Psi_3$
+\end{center}
+$\underline{case5}~~~{\rm W_{2}}~\geqq~{\rm W_{1}}~\geqq~{\rm W_{3}}~のとき$\\
+\begin{center}
+  ${\rm W_{2}}~\geqq~\Psi_3$
+\end{center}
+$\underline{case6}~~~{\rm W_{3}}~\geqq~{\rm W_{2}}~\geqq~{\rm W_{1}}~のとき$\\
+\begin{center}
+  ${\rm W_{3}}~\geqq~\Psi_3$
+\end{center}
+
+以上より、$任意のB\in Q~に対して、~$max$\{{\rm W_{1}},~{\rm W_{2}},~{\rm W_{3}}\}~\geqq~\Psi_3~$となるため
+\begin{center}
+  $d_0(T_3)=\Psi_3$
+\end{center}
+
+
+\newpage
+
+$d_0(T_n) = \Psi_n$を示す\\
+
+まず、$d_0(T_n) \leqq \Psi_n$~を帰納法で示す\\
+
+\underline{$k=2のとき$}
+\begin{center}
+  $d_0(T_2)=\Psi_2$~は既に示されている
+\end{center}
+\underline{$k=n-1のとき$}
+\begin{center}
+  $d_0(T_{n-1})=\Psi_{n-1}$~が成立すると仮定する
+\end{center}
+
+最初または最後に$t_i~(1,~\ldots,~i,~\ldots,~n)$を調べるアルゴリズム全体の集合を$V$とする
+ここで、$T_nをt_iと残りn-1個の部分木の2分木だと捉えると$←書き方わからん
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+     & \multicolumn{1}{c|}{アルゴリズム} & \multicolumn{2}{c|}{コスト} \\ \cline{1-4}
+重み  & 探索する順番 & ${\rm W_{1}}$ & ${\rm W_{2}}$ \\ \hline
+$p_1$ & $t_1, t_2$ & $\Psi_{n-1}$  & $b_1+\cdots+b_{n-1}+a_n$  \\ \hline
+$1-p_1$ & $t_2, t_1$ & $b_1+\Psi_{n-1}$  & $a_n$ \\ \hline
+\end{tabular}
+\end{center}
+このときのコスト期待値${\rm W_{1}},~{\rm W_{2}}は$
+\begin{eqnarray*}
+  {\rm W_{1}}&=&p_1\Psi_{n-1}+(1-p_1)(b_n+\Psi_{n-1})\\
+  &=&(1-p_1)b_n+\Psi_{n-1}\\
+  {\rm W_{2}}&=&p_1(b_1+\cdots+b_{n-1}+a_n)+(1-p_1)a_n\\
+  &=&p_1(b_1+\cdots+b_{n-1})+a_n
+\end{eqnarray*}
+ここで、${\rm W_{1}}={\rm W_{2}}とすると$
+\begin{eqnarray*}
+  {\rm W_{1}}&=&{\rm W_{2}}\\
+  (1-p_1)b_n+\Psi_{n-1}&=&p_1(b_1+\cdots+b_{n-1})+a_n\\
+  p_1(b_1+\cdots+b_{n})&=&\Psi_{n-1}-a_n+b_n\\
+  p_1&=&\displaystyle\frac{\Psi_{n-1}-a_n+b_n}{b_1+\cdots+b_{n}}
+\end{eqnarray*}
+${\rm W_{1}},~{\rm W_{2}}~に~p_1~を代入すると$
+\begin{center}
+  ${\rm W_{1}}={\rm W_{2}}=\Psi_n$
+\end{center}
+以上から、$d_0(T_n) \leqq \Psi_n$
+
+\newpage
+
+次に、$d_0(T_n) \geqq \Psi_n$~を示す~~~$W_iのWeight?を~\displaystyle\frac{b_i}{\displaystyle\sum_{j=1}^{n} b_j}$とし\\
+\begin{eqnarray*}
+cost&=&\displaystyle\frac{b_1}{\displaystyle\sum_{j=1}^{n} b_j}a_1+\displaystyle\frac{b_2}{\displaystyle\sum_{j=1}^{n} b_j}(b_1+a_2)+\cdots+\displaystyle\frac{b_n}{\displaystyle\sum_{j=1}^{n} b_j}(b_1+b_2+\cdots+b_{n-1}+a_n)\\
+&=&\displaystyle\frac{1}{\displaystyle\sum_{j=1}^{n} b_j}(a_1b_1+(a_2b_2+b_1b_2)+\cdots+(a_nb_n+b_1b_n+\cdots+b_{n-1}b_n))\\
+&=&\displaystyle\frac{\displaystyle\sum_{i=1}^{n}a_ib_i~+~\displaystyle\sum_{i=1,j=1}^{n}a_ib_j}{\displaystyle\sum_{i=1}^{n} b_i}\\
+&=&\Psi_n
+\end{eqnarray*}\\
+よって、Yaoなんちゃらを使って下からおさえる
 \end{document}
